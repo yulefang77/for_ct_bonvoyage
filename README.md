@@ -45,20 +45,19 @@
 
         > Forwarding                    https://4d2f-123-456-00-789.ngrok-free.app -> http://localhost:5000
        
-# 回到 [LINE Developers](https://developers.line.biz/) 設定 webhook。
-在 line channel->messaging api 找到webhook 設定：
-1. Webhook settings
-    - Webhook URL 填入 ngrok 提供網址並加上 `/callback` 如下：
-      
-        ```
-        https://4d2f-123-456-00-789.ngrok-free.app/callback
-        ```
-        
-    - 打開 use webhook。
-    - 點擊 Verify 。如果跳出 success 視窗，即表示已串接成功。如果這裡發生錯誤，通常是 access token 或 channel screcet 環境變數未設定正確。
-    - 使用上方 Bot information： *Bot basic ID* 或 *QR code* 擇一方式加入好友。
-    - 傳一份文字訊息測試是否成功。 如果串接失敗，會回傳與使用者一樣的訊息。如果這裡發生錯誤, 錯誤訊息可以到 flask *命令提示字元*視窗找到。
-
-2. LINE Official Account features (可跳過這個步驟)
-    - 關閉 Auto-reply messages
+3. 回到 [LINE Developers](https://developers.line.biz/) ，在 line channel->messaging api 找到 webhook 設定：
+   1. Webhook settings
+        - Webhook URL 填入 ngrok 提供網址並加上 `/callback` 如下：
+          
+            ```
+            https://4d2f-123-456-00-789.ngrok-free.app/callback
+            ```
+            
+        - 打開 use webhook。
+        - 點擊 Verify 。如果跳出 success 視窗，即表示已串接成功。如果這裡發生錯誤，通常是 access token 或 channel screcet 環境變數未設定正確。
+        - 使用上方 Bot information： *Bot basic ID* 或 *QR code* 擇一方式加入好友。
+        - 傳一份文字訊息測試是否成功。 如果串接失敗，會回傳與使用者一樣的訊息。如果這裡發生錯誤, 錯誤訊息可以到 flask *命令提示字元*視窗找到。
+    
+    2. LINE Official Account features (可跳過這個步驟)
+        - 關閉 Auto-reply messages
 # *Good Luck!*
