@@ -1,5 +1,4 @@
 import os
-from dotenv import load_dotenv
 from flask import Flask, request, abort
 from openai import OpenAI
 from linebot.v3 import (
@@ -20,12 +19,9 @@ from linebot.v3.webhooks import (
     TextMessageContent
 )
 
-# 載入 .env 檔案內容 
-load_dotenv()
 
 ACCESS_TOKEN = os.environ.get('ACCESS_TOKEN')
 CHANNEL_SECRET = os.environ.get('CHANNEL_SECRET')
-BONVOYAGE = os.environ.get('BONVOYAGE')
 
 app = Flask(__name__)
 
@@ -82,7 +78,7 @@ def call_openai_api(user_text):
                     "你是一位生活助手，稱呼使用者「老闆」，"
                     "回答應以像職場下屬對上司的態度回應使用者:"
                     "尊敬的、理解的、信任的。中文回答使用正體中文字，勿使用簡體字。"
-                    f"回答長度不要超過200個字。{BONVOYAGE}"
+                    "回答長度不要超過200個字。"
                 )},
             {"role": "user", "content": user_text}
           ]
@@ -99,5 +95,4 @@ def call_openai_api(user_text):
 
 if __name__ == "__main__":
     app.run()
-
 
