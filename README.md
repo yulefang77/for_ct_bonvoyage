@@ -44,5 +44,5 @@
 3. 完成第二步驟以後，命令提示字元視窗會輸出一連串上傳與安裝程式訊息。若無錯誤訊息產生，接著使用 `heroku logs --tail` 觀察日誌功能，確認佈署成功訊息。
 
 ## 後記
-- 我提供的說明文件中，上傳程式碼與網頁有一些不同 `git push heroku master` 與 `git push heroku main`，這個是預設分支的名稱問題。不熟悉 Git 操作的初學者容易被困在專案分支這個問題上，我測試的結果，`git push heroku master` 可以直接成功。Heroku 官網針對該問題也有提供[解決方案](https://help.heroku.com/O0EXQZTA/how-do-i-switch-branches-from-master-to-main)
+- 我提供的說明文件中，上傳程式碼與網頁有一些不同，`git push heroku master` 與 `git push heroku main`，這個是預設分支的名稱問題。不熟悉 Git 操作的初學者容易被困在專案分支這個問題上。我測試的結果，`git push heroku master` 才可以成功上傳。Heroku 官網針對該問題也有提供[解決方案](https://help.heroku.com/O0EXQZTA/how-do-i-switch-branches-from-master-to-main)
 ## Good Luck for C.T.
