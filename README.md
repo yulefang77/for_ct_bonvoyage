@@ -45,4 +45,4 @@
 
 ## 後記
 - 我提供的說明文件中，上傳程式碼與網頁有一些不同，`git push heroku master` 與 `git push heroku main`，這個是預設分支的名稱問題。不熟悉 Git 操作的初學者容易被困在專案分支這個問題上。我測試的結果，`git push heroku master` 才可以成功上傳。Heroku 官網針對該問題也有提供[解決方案](https://help.heroku.com/O0EXQZTA/how-do-i-switch-branches-from-master-to-main)
-## *Good Luck to you*
+## *Good Luck to You*
