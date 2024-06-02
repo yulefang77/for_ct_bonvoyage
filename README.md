@@ -1,48 +1,73 @@
 # 將程式佈署至 Heroku
-本文假設使用者已完成以下前置作業
-- 成功在本機測試程式成功
-- 成功下載安裝 [Git](https://git-scm.com/download/win)
-- 完成 Heroku 官網註冊，並訂閱 Eco dynos plan
-## 下載安裝 Heroku Command Line Interface (CLI) 並驗證身份
-- 進入 [Heroku 官網教學設定網頁](https://devcenter.heroku.com/articles/getting-started-with-python#set-up)
-- 下載安裝 Heroku CLI
-- 按照設定網頁指示，開啟本機命令提示字元，鍵入命令 `heroku login`。按照視窗指示隨意按一個鍵，此命令會將您的網絡瀏覽器打開到 Heroku 登錄頁面。如果您的瀏覽器已經登錄到 Heroku，只需單擊頁面上顯示的“Login in”按鈕即可。
-- 必須注意的是-這個身份驗證步驟，heroku 和 git 這兩個命令都必需正確運行才能成功。
+
+這份文件將指導你如何將你的程式部署到 Heroku，並且提供了後續串接 LINE Messaging API 的步驟。
+
+## 前置作業
+
+確保你已完成以下前置作業：
+- 在本機成功測試程式。
+- 下載並安裝 [Git](https://git-scm.com/download/win)。
+- 完成 Heroku 官網註冊，並訂閱 Eco dynos plan。
+
+## 安裝 Heroku Command Line Interface (CLI) 並驗證身份
+
+1. 進入 [Heroku 官網教學設定網頁](https://devcenter.heroku.com/articles/getting-started-with-python#set-up)。
+2. 下載並安裝 Heroku CLI。
+3. 開啟本機命令提示字元，輸入命令 `heroku login`。按照視窗指示完成身份驗證。
+4. 這裡必須注意的是-「身份驗證」步驟，heroku 和 git 這兩個命令都必需正確運行才能成功。
+ 
 ## 在 Heroku 上建立新 app
-- 回到 [Heroku 儀表版](https://dashboard.heroku.com/apps)
-- 使用者會看到 create new app 按鈕，或者它會放網頁右上方有一個 new 選單裡面
-- 進入 create new app 網頁，在 App Name 欄位填入使用者 app 名稱。(可任意)
-- 完成這個步驟，使用者會被導入 Deploy 網頁。
-- 佈署 app 這個步驟，我們最後將環境變數設定再回來做。先選 settings 按鈕，前往設定 app 環境變數。 
+
+1. 前往 [Heroku 儀表版](https://dashboard.heroku.com/apps)。
+2. 點擊「create new app」按鈕，或者在右上角的 new 選單中選擇 create new app。
+3. 在 App Name 欄位填入你的 app 名稱（可以任意）。
+4. 完成後你將被導入 Deploy 網頁。
+5. 佈署 app 這個步驟，我們先將環境變數設定完成再回來做。
+6. 先選 settings 按鈕，前往設定 app 環境變數。
+   
 ## 新 app 的環境變數設定 
-- 假設使用者在已經正確導至 settings 網頁，在 Config Vars 區塊點選 Reveal Config Vars，將環境變數填進去。
+
+1. 在 settings 頁面找到 Config Vars 區塊，點擊 Reveal Config Vars。
+2. 將以下環境變數填入：
     - ACCESS_TOKEN
     - CHANNEL_SECRET
     - OPENAI_API_KEY
-- settings 網頁還有2個資訊必須要注意。
-1. App Information > Heroku git URL，這個是等一下你要上傳程式的雲端位置。
-2. Domains：這個區塊有一個以使用者 app 命名稱為首的網址，它就是你在雲端上提供服務的位置。
+3. 請注意下面兩個資訊：
+    - App Information > Heroku git URL，這是你要上傳程式的雲端位置。
+    - Domains：這個區塊有一個以你的 app 名稱為首的網址，它就是你在雲端上提供服務的位置。
+
 ## 將程式佈署至 Heroku
-點選 deploy 按鈕回到佈署程式網頁，按照指示佈署程式。
-1. 創建新 Git 倉庫 - Create a new Git repository
-    - 將本分支需要用到的檔案下載至專案資料匣，它包含
+
+1. 回到佈署程式網頁，點擊 deploy 按鈕。
+2. 創建新 Git 倉庫 - Create a new Git repository
+    - 下載程式所需檔案至專案資料夾，包括：
         - app.py
         - Procfile
         - requirements.txt
-    - 在命令提示字元視窗進入專案資料匣，然後輸入以下指令
+    - 在命令提示字元中進入專案資料夾，然後輸入以下指令：
     ```
     $ git init
-    $ heroku git:remote -a user's_app_namm
+    $ heroku git:remote -a 你的_app_名稱
     ```
-2. 佈署使用者的應用程式 - Deploy your application
-    - 將程式碼提交到存儲庫並使用 Git 將其部署到 Heroku。
+3. 佈署你的應用程式 - Deploy your application
+    - 提交程式碼至倉庫並使用 Git 將其部署到 Heroku。
     ```
     $ git add .
     $ git commit -am "make it better"
     $ git push heroku master
     ```
-3. 完成第二步驟以後，命令提示字元視窗會輸出一連串上傳與安裝程式訊息。若無錯誤訊息產生，接著使用 `heroku logs --tail` 觀察日誌功能，確認佈署成功訊息。
+4. 完成第二步後，命令提示字元會輸出上傳與安裝程式的訊息。若無錯誤訊息產生，使用 `heroku logs --tail` 觀察日誌功能，確認佈署成功訊息。
+
+## 串接 LINE Messaging API
+
+1. 將 settings 網頁 > Domains 區塊裡 Heroku 提供服務的網址複製。
+2. 回到使用者原先本機測式成功的 Line Bot Channel > Messaging API 網頁
+3. 將步驟 1 服務網址貼到 Webhook settings > Webhook URL，記得網址結尾別漏掉 `/callback` 路由。
+4. 按下 Verify 按鈕驗證是否成功。
 
 ## 後記
-- 我提供的說明文件中，上傳程式碼與網頁有一些不同，`git push heroku master` 與 `git push heroku main`，這個是預設分支的名稱問題。不熟悉 Git 操作的初學者容易被困在專案分支這個問題上。我測試的結果，`git push heroku master` 才可以成功上傳。Heroku 官網針對該問題也有提供[解決方案](https://help.heroku.com/O0EXQZTA/how-do-i-switch-branches-from-master-to-main)
-## *Good Luck to You*
+
+- 在這份文件中，上傳程式碼的指令與 Heroku 官網提供的指示有所不同，`git push heroku master` 和 `git push heroku main`。我測試的結果顯示，`git push heroku master` 可以成功上傳。
+- 訂閱 Heroku Eco dynos plan 超過約 30 分鐘沒有流量，會進入睡眠。第一次測試 Webhook 驗證 Verify 按鈕可以喚醒服務，但可能會發生逾時回應錯誤。可以再按一次 Verify 按鈕測試程式是否成功回應。
+
+## *祝你好運*
